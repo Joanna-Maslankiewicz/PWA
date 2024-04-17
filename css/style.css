@@ -6,18 +6,43 @@ body {
 html,
 .fullscreen {
     display: flex;
+    flex-direction: column;
     height: 100%;
     margin: 0;
     padding: 0;
     width: 100%;
+    text-align: center;
+    align-items: center;
 }
 
 /* Center the content in the browser window */
 .container {
+    display: flex;
+    flex-direction: column;
     margin: auto;
     text-align: center;
+    align-items: center;
+    width: 100%;
 }
 
 .title {
     font-size: 3rem;
+    margin: 20px 0;
+}
+
+.authors{
+    width: 90%;
+    margin: 10px auto;
+}
+
+#map, .title {
+    width: 90%;
+    margin: 10px auto;
+}
+
+#sosButton {
+    padding: 100px 0; /* Padding w pionie, szerokość pozioma zostanie kontrolowana przez szerokość */
+    width: 50%; /* Przycisk zajmuje 50% szerokości rodzica */
+    font-size: 1em; /* Rozmiar czcionki relatywny do ustawienia rodzica */
+    margin: 5px 0; /* Margines dla oddzielenia, jeśli jest więcej przycisków */
 }

@@ -11,28 +11,52 @@
     <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 </head>
 <body class="fullscreen">
+    
+    <div class="container">
+      <a class="btn btn-primary" href="index.html" role="button">< Back to homepage</a>
+      <h1 class="title">Map</h1>
+      <div id="map" style="height:580px;"></div>
+    </div>
+    
     <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <div class="container">
-      <h1 class="title">Maps</h1>
-    </div>
-    <div id = "map" style = "width:900px; height:580px;"></div>
     <script src="js/main.js"></script>
     <script>
-        // Creating map options
-        var mapOptions = {
-           center: [17.385044, 78.486671],
-           zoom: 10
+      // Creating map options
+      var mapOptions = {
+        center: [50.049683, 19.944544],
+        zoom: 10
+      }
+      
+      // Creating a map object
+      var map = new L.map('map', mapOptions);
+      
+      // Creating a Layer object
+      var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+      
+      // Adding layer to the map
+      map.addLayer(layer);
+
+          // Function to update map location
+      function onLocationFound(e) {
+        var radius = e.accuracy / 2;
+
+        var locationMarker = L.marker(e.latlng).addTo(map)
+            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+        var locationCircle = L.circle(e.latlng, radius).addTo(map);
+        map.setView(e.latlng, 13); // Zoom closer
         }
-        
-        // Creating a map object
-        var map = new L.map('map', mapOptions);
-        
-        // Creating a Layer object
-        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-        
-        // Adding layer to the map
-        map.addLayer(layer);
+
+      function onLocationError(e) {
+          alert(e.message);
+      }
+
+      map.on('locationerror', onLocationError);
+      map.on('locationfound', onLocationFound);
+
+      // Request user's location
+      map.locate({setView: true, maxZoom: 16});
      </script>
   </body>
 </html>
