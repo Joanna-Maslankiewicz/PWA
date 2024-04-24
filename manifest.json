@@ -2,16 +2,11 @@
     "name": "Progressive Web Application",
     "short_name": "PWA",
     "icons": [{
-      "src": "images/favicon-16x16.png",
-        "sizes": "16x16",
-        "type": "image/png",
+      "src": "images/icon.webp",
+        "sizes": "256x256",
+        "type": "image/webp",
         "purpose": "any"
-      }, {
-        "src": "images/icon.webp",
-          "sizes": "256x256",
-          "type": "image/webp",
-          "purpose": "any"
-        }],
+      }],
     "lang": "en-US",
     "start_url": "/index.html",
     "display": "standalone",
